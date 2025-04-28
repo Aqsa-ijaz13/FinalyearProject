@@ -27,6 +27,7 @@ dependencies:
   fluttertoast: ^8.2.12
   file_picker: ^10.1.2
   audioplayers: ^6.4.0
+  image_picker: ^1.1.2
 
 
 

@@ -9,6 +9,7 @@ import '../ProfileScreen/profilescreen.dart';
 import '../featurescreen/featurescreen.dart';
 import '../history_screen/history_screen.dart';
 import '../timer_screen/timer_screen.dart';
+import '../../utilis/Constants/app_colors.dart';
 
 
 class HomeScreen extends StatefulWidget {

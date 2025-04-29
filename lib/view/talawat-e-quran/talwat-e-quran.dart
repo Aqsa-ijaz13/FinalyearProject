@@ -87,7 +87,6 @@ class _TalwatEQuranState extends State<TalwatEQuran> {
     final seconds = d.inSeconds.remainder(60).toString().padLeft(2, '0');
     return "$minutes:$seconds";
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

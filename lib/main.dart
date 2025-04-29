@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:fyp/view/login_screen/login_provider.dart';
 import 'package:fyp/view/signup_screen/signup_provider.dart';
 import 'package:fyp/view/splash_screen/splash_screen.dart';
 import 'package:get/get.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(providers: [
       ChangeNotifierProvider(create: (_)=>SignUpProvider()),
+      ChangeNotifierProvider(create: (_)=>LoginProvider())
     ],
     child: GetMaterialApp(
       debugShowCheckedModeBanner: false,

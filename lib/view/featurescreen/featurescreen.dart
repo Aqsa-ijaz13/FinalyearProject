@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:fyp/utilis/Constants/app_colors.dart';
+import 'package:fyp/view/login_screen/login_screen.dart';
+import 'package:fyp/widget/snackbar.dart';
+import 'package:get/get.dart';
 
 import '../dailyaffairmation/DailyAffiarmation.dart';
 import '../emergency contacts/EmergencyContacts.dart';
@@ -22,6 +26,8 @@ class _FeatureScreenState extends State<FeatureScreen> {
   static const String breathingExercises = 'Breathing Exercises';
   static const String history = 'History';
   static const String emergencyContact = 'Emergency Contact';
+  static const String logout="Logout";
+  final auth=FirebaseAuth.instance;
 
   static final Color background1 = Color(0xffFFE1E1);
   static final Color background2 = Color(0xffC9D4AC);
@@ -68,7 +74,8 @@ class _FeatureScreenState extends State<FeatureScreen> {
                   title: dailyAffirmation,
                   onTap: () => Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => DailyAffirmationScreen()),
+                    MaterialPageRoute(
+                        builder: (context) => DailyAffirmationScreen()),
                   ),
                 ),
                 FeatureButton(
@@ -96,9 +103,45 @@ class _FeatureScreenState extends State<FeatureScreen> {
                   title: emergencyContact,
                   onTap: () => Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => EmergencyContactsScreen()),
+                    MaterialPageRoute(
+                        builder: (context) => EmergencyContactsScreen()),
                   ),
                 ),
+                Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: GestureDetector(
+        onTap: () async{
+          await auth.signOut().then((onValue){
+            showCustomSnackbar(title: "", message: "Logout Successsfully", backgroundColor: AppColors.greenBtn);
+            Get.to(LoginScreen());
+          }).onError((error, stackTrace){
+            showCustomSnackbar(title: "Oops", message: error.toString(), backgroundColor: AppColors.red);
+          });
+        },
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            border: Border.all(color: Colors.black12),
+            color: Colors.white.withOpacity(0.8),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                logout,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const Icon(Icons.arrow_forward_ios, size: 18),
+            ],
+          ),
+        ),
+      ),
+    )
               ],
             ),
           ),

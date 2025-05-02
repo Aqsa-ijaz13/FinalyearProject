@@ -30,6 +30,7 @@ dependencies:
   provider:
   flutter_easyloading:
   image_picker: ^1.1.2
+  intl:
 
 
 dev_dependencies:
